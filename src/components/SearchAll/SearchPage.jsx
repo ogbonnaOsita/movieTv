@@ -39,7 +39,7 @@ const Search = () => {
       }),
   });
 
-  console.log(fetchData.data);
+  // console.log(fetchData.data);
   return (
     <div className="space-y-5 py-10 px-5 md:px-20">
       {/* Header */}
