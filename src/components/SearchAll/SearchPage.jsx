@@ -1,6 +1,7 @@
+/* eslint-disable no-undef */
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import MovieGrid from "../MovieSection/MovieGrid";
 import MovieCard from "../MovieSection/MovieCard";
@@ -17,6 +18,7 @@ const Search = () => {
 
   // Any time the searchQuery state change then the useeffect runs and set the url using the updated searchQuery state.
   useEffect(() => {
+    // alert(process.env.VITE_REACT_APP_BEARER);
     setUrl(
       `https://api.themoviedb.org/3/search/multi?query=${searchQuery}&include_adult=false&language=en-US&page=1`
     );
@@ -32,9 +34,12 @@ const Search = () => {
           Authorization:
             "Bearer " +
             "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NjY0YzkyYmJkNTllMjQ0ODA4NTFlMjg5MGVjYzcwNCIsInN1YiI6IjY0YTExYmFlZDUxOTFmMDBlMjY0MjhkMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9M9zvrR5_1b9jomPkdNdCRe3ePbXML8BOiVOgzE_Uxw",
+          //   process.env.VITE_REACT_APP_BEARER,
         },
       }),
   });
+
+  console.log(fetchData.data);
   return (
     <div className="space-y-5 py-10 px-5 md:px-20">
       {/* Header */}
@@ -67,7 +72,11 @@ const Search = () => {
         <div>
           <MovieGrid>
             {fetchData.data.data.results.map((gridDatum) => (
-              <MovieCard key={uuidv4()} data={gridDatum} />
+              <MovieCard
+                key={uuidv4()}
+                data={gridDatum}
+                section={gridDatum.media_type}
+              />
             ))}
           </MovieGrid>
         </div>

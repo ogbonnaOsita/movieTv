@@ -2,7 +2,7 @@
 
 import { Link } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
-import { RiAccountPinBoxLine } from "react-icons/ri";
+// import { RiAccountPinBoxLine } from "react-icons/ri";
 import { useState } from "react";
 
 const Navbar = () => {
@@ -20,9 +20,9 @@ const Navbar = () => {
     <div className="absolute w-full px-4 lg:px-20  top-0 z-40">
       <nav className="flex items-center justify-between py-5 border-b border-slate-600 relative">
         <div className="logo flex items-center gap-2">
-          <h1 className="text-xl order-1 font-bold text-red-800">
+          <Link to={"/"} className="text-xl order-1 font-bold text-red-800">
             RayPower Tv
-          </h1>
+          </Link>
           <div className="toggle-btn md:hidden">
             <input
               hidden

@@ -7,10 +7,22 @@ import axios from "axios";
 import { BsFillPlayFill } from "react-icons/bs";
 import { HiPlus } from "react-icons/hi";
 import { useMediaQuery } from "../../hooks/MediaQuery";
+import { useState } from "react";
+import { createPortal } from "react-dom";
+import TrailerIframe from "./TrailerIframe";
+import { Link } from "react-router-dom";
 
 const SlideTiles = (props) => {
   const { data, handleChangeBgImg } = props;
+  // using the media query hook to change the background image depending on the width of the screen.
   const backgroundSwitch = useMediaQuery("(min-width: 760px)");
+  // This state is used to display or hide the trailer modal. This trailer component displays a modal that show the trailer of the film from youtube.
+  const [watchTrailer, setWatchTrailer] = useState(false);
+
+  const handleOpenModal = () => {
+    setWatchTrailer(true);
+    document.body.style.overflow = "hidden";
+  };
 
   const {
     backdrop_path,
@@ -34,6 +46,7 @@ const SlideTiles = (props) => {
     }),
   };
 
+  // The data gotten from this useQuery function is so that we can have aditional information about the movie to display like the genre list and tagline.
   const {
     data: movieData,
     isLoading,
@@ -59,25 +72,14 @@ const SlideTiles = (props) => {
     return <h1>Error Loading results</h1>;
   }
 
-  console.log(movieData.data);
+  // console.log(movieData.data);
 
   return (
     <div className="each-slide-effect">
       <div
-        // style={{
-        //   backgroundImage: `linear-gradient(to bottom, rgba(0,0,0, 0.62), rgba(0,0,0, 0.83)),
-        //   url(http://image.tmdb.org/t/p/w500/${poster_path})
-        //   `,
-        // }}
         style={backgroundStyle.style(backgroundSwitch)}
         className="flex items-center justify-start md:pl-20 bg-cover bg-center bg-no-repeat h-[90vh] relative"
       >
-        {/* <img
-          src={`http://image.tmdb.org/t/p/w500/${backdrop_path}`}
-          alt=""
-          className="absolute top-0 left-0 z-0 h-full object-cover
-          "
-        /> */}
         <div className="p-10 text-xl bg-[#efefef]y space-y-7 z-10y">
           <p className="font-medium text-sm text-[#efefef] leading-loose">
             Duration : 1hr 30mins
@@ -91,23 +93,32 @@ const SlideTiles = (props) => {
             {original_title}
           </h2>
           <p className="font-medium text-sm text-[#efefef] leading-loose w-[300px] ">
-            {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum
-            eligendi amet obcaecati, ipsum reprehenderit ex! */}
             {/* {overview.slice(0, 200)}........ */}
             {movieData.data.tagline}
           </p>
           <div className="btn-cta flex gap-4 text-sm font-semibold">
-            <button className="rounded-xl py-2 px-5 bg-red-700 text-[#efefef] flex items-center gap-2">
+            <button
+              className="rounded-xl py-2 px-5 bg-red-700 text-[#efefef] flex items-center gap-2"
+              onClick={handleOpenModal}
+            >
               <BsFillPlayFill />
               Watch
             </button>
-            <button className="rounded-xl py-2 px-5 bg-black text-[#efefef] flex items-center gap-2">
+            <Link
+              to={`/${id}/movie/${original_title.split(" ").join("-")}`}
+              className="rounded-xl py-2 px-5 bg-black text-[#efefef] flex items-center gap-2"
+            >
               <HiPlus />
-              Add List
-            </button>
+              Details
+            </Link>
           </div>
         </div>
       </div>
+      {watchTrailer &&
+        createPortal(
+          <TrailerIframe id={id} closeModal={setWatchTrailer} />,
+          document.getElementById("iframe_modal")
+        )}
     </div>
   );
 };

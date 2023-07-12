@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import { AiFillLike, AiFillStar } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 // import { BsFillPlayFill } from "react-icons/bs";
 // import { HiPlus } from "react-icons/hi";
@@ -18,13 +19,14 @@ const SlideTiles = (props) => {
     // overview,
     original_title,
     vote_average,
-    // id,
+    id,
     poster_path,
   } = data;
 
   // const voteAverageRoundUp = vote_average.toString().slice(0, 3);
 
-  const handleLiked = () => {
+  const handleLiked = (e) => {
+    e.stopPropagation();
     setIsLiked(!isLiked);
   };
 
@@ -37,7 +39,8 @@ const SlideTiles = (props) => {
       className="each-slide-effect px-2 cursor-pointer"
       onClick={handleDetails}
     >
-      <div
+      <Link
+        to={`/${id}/movie/${original_title.split(" ").join("-")}`}
         style={{
           backgroundImage: `linear-gradient(to bottom, rgba(0,0,0, 0.1), rgba(0,0,0, 0.2)), url(http://image.tmdb.org/t/p/w500/${poster_path})`,
         }}
@@ -63,7 +66,7 @@ const SlideTiles = (props) => {
             </span>
           </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };

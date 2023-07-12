@@ -1,21 +1,14 @@
 import { tagNames } from "../TrendingMovieSection/SectionData";
 import { v4 as uuidv4 } from "uuid";
-// import { Slide } from "react-slideshow-image";
-// import SlideTiles from "../TrendingMovieSection/SlideTiles";
-// import { useQuery } from "@tanstack/react-query";
-// import { useState } from "react";
 import MovieGenreSlide from "./MovieGenreSlide";
-// import { useNavigate } from "react-router-dom";
 import ScrollToTopBtn from "../ScrollToTopBtn";
 import TagSelectDropDown from "./TagSelectDropDown";
 
 const DetailedList = () => {
-  // const navigate = useNavigate();
   const handleClicked = (path) => {
-    // navigate(`/#${path}`);
     const element = document.getElementById(path);
     if (element) {
-      // 👇 Will scroll smoothly to the top of the next section
+      // Will scroll smoothly to the top of the next section
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -40,7 +33,7 @@ const DetailedList = () => {
         </div>
       </div>
 
-      {/* RIGHT SIDE */}
+      {/* RIGHT SIDE THAT CONTAINS THE SLIDE */}
       <div className="col-span-6 px-5 lg:px-0y lg:col-span-5 text-[#F2F2F2] flex flex-col gap-10 lg:pl-10 py-10">
         <div className="h-[400px]y space-y-5">
           {/* this div will be the div to show the movie been selected--or hovered on... */}
@@ -59,8 +52,6 @@ const DetailedList = () => {
               genreId={tagname.id}
             />
           ))}
-          {/* slides container */}
-          {/* <div className="movie-display-slide h-[400px] py-10 pl-12y pr-8y"></div> */}
         </div>
       </div>
       <ScrollToTopBtn />

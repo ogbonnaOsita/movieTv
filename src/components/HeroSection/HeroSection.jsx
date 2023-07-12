@@ -11,6 +11,7 @@ import SlideTiles from "./SlideTiles";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useMediaQuery } from "../../hooks/MediaQuery";
+import { v4 as uuidv4 } from "uuid";
 
 const HeroSection = () => {
   const images = [slide1, slide2, slide3];
@@ -34,8 +35,6 @@ const HeroSection = () => {
       ),
   });
 
-  // console.log(data.data.results);
-
   if (isLoading) {
     return <h1>Loading results</h1>;
   }
@@ -46,13 +45,11 @@ const HeroSection = () => {
 
   const slideData = data?.data.results?.slice(0, 3);
 
-  console.log(slideData);
-
   return (
     <>
       <Slide arrows={false} duration={3000} indicators={indicators}>
         {slideData.map((slideDatum, i) => (
-          <SlideTiles key={i} data={slideDatum} />
+          <SlideTiles key={uuidv4()} data={slideDatum} />
         ))}
       </Slide>
     </>

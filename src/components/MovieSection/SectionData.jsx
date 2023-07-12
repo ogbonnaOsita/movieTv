@@ -7,7 +7,7 @@ export const meunLinks = [
     id: 48,
     menu: "Movies",
     icon: <IoMdFilm />,
-    path: "movies",
+    path: "movie",
   },
   {
     id: 86,

@@ -14,16 +14,16 @@ import { useQuery } from "@tanstack/react-query";
 import { tagNames, images } from "../TrendingMovieSection/SectionData";
 
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+// import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
-import "swiper/css";
+// // Import Swiper styles
+// import "swiper/css";
 
-// Import Swiper styles
-import "swiper/css/pagination";
+// // Import Swiper styles
+// import "swiper/css/pagination";
 
-// import required modules
-import { Pagination } from "swiper/modules";
+// // import required modules
+// import { Pagination } from "swiper/modules";
 
 const MovieGenreSlide = ({ genreId, tagname }) => {
   const [bgImg, setBgImg] = useState("none");
@@ -49,15 +49,9 @@ const MovieGenreSlide = ({ genreId, tagname }) => {
   });
 
   if (fetchData.isLoading) {
-    // return <h1 className="text-white text-center">Loading results</h1>;
     return (
       <div className="w-full h-[400px] flex justify-center items-center">
         <div className="loader_fetch"></div>
-        {/* <div className="loader">
-          <div data-glitch="Loading..." className="glitch">
-            Loading...
-          </div>
-        </div> */}
       </div>
     );
   }
@@ -66,17 +60,7 @@ const MovieGenreSlide = ({ genreId, tagname }) => {
     return <h1>Error Loading results</h1>;
   }
 
-  //   console.log(fetchData.data.data.results);
-
   const slideData = fetchData.data.data.results;
-
-  // const [bgImg, setBgImg] = useState(slideData[0].poster_path);
-
-  // useEffect(()=>{
-  //   setBgImg(slideData[0].poster_image)
-  // },[])
-
-  //   console.log(slideData);
 
   return (
     <div className=" py-5 space-y-2 " id={tagname}>
@@ -116,24 +100,6 @@ const MovieGenreSlide = ({ genreId, tagname }) => {
             />
           ))}
         </Slide>
-        {/* <Swiper
-          slidesPerView={5}
-          spaceBetween={30}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Pagination]}
-          className="mySwiper"
-        >
-          {images.map((slideDatum) => (
-            <SwiperSlide key={uuidv4()}>
-              <SlideTiles
-                data={slideDatum}
-                handleChangeBgImg={handleChangeBgImg}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper> */}
       </div>
     </div>
   );

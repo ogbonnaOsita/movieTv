@@ -93,7 +93,7 @@ const TvSeriesList = () => {
       <div>
         <MovieGrid>
           {gridData.map((gridDatum) => (
-            <MovieCard key={uuidv4()} data={gridDatum} />
+            <MovieCard key={uuidv4()} data={gridDatum} section={"tvserie"} />
           ))}
         </MovieGrid>
       </div>

@@ -1,27 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/display-name */
-// import Select from "react-select";
-
-// const options = [
-//   { value: "chocolate", label: "Chocolate" },
-//   { value: "strawberry", label: "Strawberry" },
-//   { value: "vanilla", label: "Vanilla" },
-// ];
-
-// const TagSelectDropDown = () => {
-//   return (
-//     <div className="w-[250px]">
-//       <Select options={options} />
-//     </div>
-//   );
-// };
-
-// export default TagSelectDropDown;
-
-// import * as Select from "@radix-ui/react-select";
 import React from "react";
 import * as Select from "@radix-ui/react-select";
-// import classnames from 'classnames';
 import {
   CheckIcon,
   ChevronDownIcon,
@@ -32,10 +12,9 @@ import { v4 as uuidv4 } from "uuid";
 
 const SelectDemo = () => {
   const handleClicked = (path) => {
-    // navigate(`/#${path}`);
     const element = document.getElementById(path);
     if (element) {
-      // 👇 Will scroll smoothly to the top of the next section
+      //  Will scroll smoothly to the top of the next section
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -71,11 +50,6 @@ const SelectDemo = () => {
                   {tagname.name}
                 </SelectItem>
               ))}
-              {/* <SelectItem value="apple">Apple</SelectItem>
-            <SelectItem value="banana">Banana</SelectItem>
-            <SelectItem value="blueberry">Blueberry</SelectItem>
-            <SelectItem value="grapes">Grapes</SelectItem>
-            <SelectItem value="pineapple">Pineapple</SelectItem> */}
             </Select.Group>
           </Select.Viewport>
           <Select.ScrollDownButton className="flex items-center justify-center h-[25px] bg-white text-violet11 cursor-default">

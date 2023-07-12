@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 // import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillLike, AiFillStar } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const MovieCard = (props) => {
-  const { data } = props;
+  const { data, section } = props;
 
   const {
     // backdrop_path,
@@ -12,22 +13,31 @@ const MovieCard = (props) => {
     original_title,
     original_name,
     vote_average,
-    // id,
+    id,
     poster_path,
   } = data;
 
   const [isLiked, setIsLiked] = useState(false);
 
+  const [filmType, setFilmType] = useState("movie");
+
+  useEffect(() => {
+    if (section === "movie") {
+      return setFilmType("movie");
+    } else {
+      return setFilmType("tvSerie");
+    }
+  }, []);
+
   const handleLiked = () => {
     setIsLiked(!isLiked);
   };
 
-  const handleDetails = () => {
-    // TODO: Route to the detail page of this movie card
-  };
-
   return (
-    <div className="cursor-pointer" onClick={handleDetails}>
+    <Link
+      className="cursor-pointer"
+      to={`/${id}/${filmType}/${original_title || original_name}`}
+    >
       <div className="img-container h-[200px] w-[200px]y w-full rounded-md ">
         <img
           src={`http://image.tmdb.org/t/p/w500/${poster_path}`}
@@ -53,7 +63,7 @@ const MovieCard = (props) => {
           </span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

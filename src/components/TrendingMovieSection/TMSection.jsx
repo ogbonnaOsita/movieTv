@@ -19,6 +19,8 @@ import axios from "axios";
 const TMSection = () => {
   const [hashname, setHashname] = useState(`#${meunLinks[0].path}`);
 
+  const [genreDisplayname, setGenreDisplayname] = useState(""); // used to display the genre that is been displayed after selecting the tags.The jsx is to be written after the TagContainer.
+
   const [theUrl, setUrl] = useState(
     "https://api.themoviedb.org/3/trending/movie/week?language=en-US"
   );
@@ -65,7 +67,6 @@ const TMSection = () => {
       return removeTagFromLocalStorage();
     } else if (location.hash === "#upcoming") {
       setUrl("https://api.themoviedb.org/3/movie/upcoming");
-      alert(112);
       return removeTagFromLocalStorage();
     }
   }, [location.hash]);
@@ -89,7 +90,10 @@ const TMSection = () => {
     // console.log(id);
     queryfilters.push(id);
     const queryFilterString = queryfilters.join("&");
-    alert(queryFilterString);
+    // alert(queryFilterString);
+    const genreSectionName = tagNames.filter((tagname) => tagname.id === id);
+    setGenreDisplayname(genreSectionName[0].name);
+    // setGenreDisplayname((prev)=> prev = )
     setUrl(`https://api.themoviedb.org/3/genre/${queryFilterString}/movies`);
   };
 
@@ -156,6 +160,9 @@ const TMSection = () => {
           handleFilter={handleFilter}
           storageKey={"tmtags"}
         />
+        <h3 className="font-semibold underline underline-offset-2 text-xl text-white">
+          {genreDisplayname}
+        </h3>
       </header>
 
       <div className="movie-display-slide h-[400px] py-10 pl-12y pr-8y">
