@@ -38,6 +38,10 @@ const TMSection = () => {
             "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NjY0YzkyYmJkNTllMjQ0ODA4NTFlMjg5MGVjYzcwNCIsInN1YiI6IjY0YTExYmFlZDUxOTFmMDBlMjY0MjhkMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9M9zvrR5_1b9jomPkdNdCRe3ePbXML8BOiVOgzE_Uxw",
         },
       }),
+    refetchIntervalInBackground: true,
+    refetchInterval: 3000,
+    // retryDelay: 5000,
+    retry: false,
   });
 
   const removeTagFromLocalStorage = () => {

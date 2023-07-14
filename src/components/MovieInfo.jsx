@@ -104,13 +104,13 @@ const MovieInfo = () => {
   return (
     // <div className="text-white font-semibold text-2xl">Movie don land</div>
     <div className="p-20 bg-[#0D0C0B] w-screen  flex justify-center  text-[#F2F2F2]">
-      <div className="bg-[#0D0C0B] space-y-5 p-10y w-[600px]">
+      <div className="bg-[#0D0C0B] space-y-5 px-2 p-10y w-[350px] md:w-[500px] lg:w-[600px]">
         <h1 className="text-[35px] font-semibold text-center">
           {original_title} (
           {release_date?.slice(0, 4) || first_air_date?.slice(0, 4)})
         </h1>
 
-        <div className="lg:w-[600px] lg:h-[700px]">
+        <div className=" w-[300px]t aspect-autoy lg:w-[600px] lg:h-[700px]">
           <img
             src={`http://image.tmdb.org/t/p/w500/${poster_path}`}
             className="h-full w-full object-fit"
@@ -137,7 +137,7 @@ const MovieInfo = () => {
                 <iframe
                   // src={videoData.data.data.results[0].key}
                   src={`https://www.youtube.com/embed/${videoData.data.data.results[0].key}`}
-                  className="min-w-[300px]  lg:w-[700px] lg:h-[500px] max-w-2xl min-h-[250px] max-h-[500px] border  border-4-white"
+                  className="min-w-[300px] w-[340px] md:w-[500px]  lg:w-[700px] lg:h-[500px] max-w-2xl min-h-[250px] max-h-[500px] border  border-4-white"
                 ></iframe>
               )}
           </div>
@@ -160,7 +160,7 @@ const MovieInfo = () => {
             {/* status */}
             <p className="font-medium text-base  flex items-start">
               status :{" "}
-              <span className="font-medium text-base border-b-2 border-red-800">
+              <span className="ml-1 font-medium text-base border-b-2 border-red-800">
                 {" "}
                 {status}
               </span>
@@ -170,14 +170,14 @@ const MovieInfo = () => {
               Release Date : {release_date}
             </p>
             {/* Spoken Language */}
-            <div className="spoken_language flex items-center gap-2">
+            <div className="spoken_language flex flex-wrap justify-start items-center gap-2">
               <p className="font-medium text-base border-b-2 border-transparent">
                 Spoken Language :
               </p>
               {spoken_languages.map((lang) => (
                 <span
                   key={uuidv4()}
-                  className="font-medium text-base border-b-2 border-red-800"
+                  className="font-medium block text-base border-b-2 border-red-800"
                 >
                   {lang.name}
                 </span>
