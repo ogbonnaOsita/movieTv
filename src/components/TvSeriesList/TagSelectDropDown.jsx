@@ -10,25 +10,34 @@ import {
 } from "@radix-ui/react-icons";
 import { v4 as uuidv4 } from "uuid";
 
-const SelectDemo = ({ values1, values2, setUrl }) => {
+const SelectDemo = ({ setFilterName }) => {
+  const Filterdata = [
+    {
+      type: "Popular",
+      category: "popular",
+    },
+    {
+      type: "On Air",
+      category: "On_Air",
+    },
+    {
+      type: "Top Rated",
+      category: "Top_Rated",
+    },
+    {
+      type: "Airing Today",
+      category: "Airing_Today",
+    },
+  ];
   const handleClicked = (value) => {
-    if (value === "Popular-desc_popularity") {
-      alert(value);
-      setUrl(
-        "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc"
-      );
-    } else if (value === "Popular-asc_popularity") {
-      setUrl(
-        "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.asc"
-      );
-    } else if (value === "Release-Date-desc_releaseDate") {
-      setUrl(
-        "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=primary_release_date.desc"
-      );
-    } else if (value === "Release-Date-asc_releaseDate") {
-      setUrl(
-        "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=primary_release_date.asc"
-      );
+    if (value === "popular") {
+      setFilterName("popular");
+    } else if (value === "On_Air") {
+      setFilterName("onAir");
+    } else if (value === "Airing_Today") {
+      setFilterName("airingToday");
+    } else if (value === "Top_Rated") {
+      setFilterName("topRated");
     }
   };
   return (
@@ -50,27 +59,10 @@ const SelectDemo = ({ values1, values2, setUrl }) => {
           <Select.Viewport className="p-[5px]">
             <Select.Group>
               <Select.Label className="px-[25px] text-xs leading-[25px] text-white bg-black ">
-                By Popularity
+                Tv Series List
               </Select.Label>
-              {values1.map((item) => (
-                <SelectItem
-                  key={uuidv4()}
-                  value={`${item.type}_${item.category}`}
-                >
-                  {item.type}
-                </SelectItem>
-              ))}
-            </Select.Group>
-            <Select.Separator className="h-[1px] bg-black m-[5px]" />
-            <Select.Group>
-              <Select.Label className="px-[25px] text-xs leading-[25px] text-white bg-black ">
-                By Release Date
-              </Select.Label>
-              {values2.map((item) => (
-                <SelectItem
-                  key={uuidv4()}
-                  value={`${item.type}_${item.category}`}
-                >
+              {Filterdata.map((item) => (
+                <SelectItem key={uuidv4()} value={item.category}>
                   {item.type}
                 </SelectItem>
               ))}

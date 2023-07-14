@@ -8,7 +8,7 @@ const MovieCard = (props) => {
   const { data, section } = props;
 
   const {
-    // backdrop_path,
+    backdrop_path,
     // overview,
     original_title,
     original_name,
@@ -40,7 +40,7 @@ const MovieCard = (props) => {
     >
       <div className="img-container h-[200px] w-[200px]y w-full rounded-md ">
         <img
-          src={`http://image.tmdb.org/t/p/w500/${poster_path}`}
+          src={`http://image.tmdb.org/t/p/w500/${poster_path || backdrop_path}`}
           alt=""
           className="h-full w-full object-cover rounded-md"
         />
