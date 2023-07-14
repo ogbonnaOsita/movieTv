@@ -10,10 +10,11 @@ import Movies from "./pages/Movies";
 import TvSeries from "./pages/TvSeries";
 import SearchPage from "./pages/SearchPage";
 import MovieInfo from "./components/MovieInfo";
+import ErrorComponent from "./components/ErrorComponent";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
+    <Route path="/" element={<RootLayout />} errorElement={<ErrorComponent />}>
       <Route index element={<Home />} />
       <Route path="movies" element={<Movies />} />
       <Route path="series" element={<TvSeries />} />

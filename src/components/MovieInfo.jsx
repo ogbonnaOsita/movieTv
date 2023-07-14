@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
+// 404 error image.
+import errorImg from "../assets/404.png";
+import networkErrImg from "../assets/networkErr.png";
+
 const MovieInfo = () => {
   const { id, title, filmtype } = useParams();
+
+  const navigation = useNavigate();
 
   //   alert(filmtype);
 
@@ -61,6 +67,12 @@ const MovieInfo = () => {
             "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NjY0YzkyYmJkNTllMjQ0ODA4NTFlMjg5MGVjYzcwNCIsInN1YiI6IjY0YTExYmFlZDUxOTFmMDBlMjY0MjhkMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9M9zvrR5_1b9jomPkdNdCRe3ePbXML8BOiVOgzE_Uxw",
         },
       }),
+    // .catch((error) => {
+    //   console.log(error.response.status);
+    //   throw new Error(error);
+    // }),
+    retry: false,
+    refetchOnWindowFocus: true,
   });
 
   if (fetchData.isLoading) {
@@ -77,9 +89,43 @@ const MovieInfo = () => {
 
   if (fetchData.isError) {
     return (
-      <h1 className="text-white font-semibold text-2xl">
-        Error Loading results
-      </h1>
+      <div className="w-full h-[400px] md:h-full flex justify-center items-center text-white">
+        {/* Error Loading results {fetchData.error.message} */}
+        {/* {toString(fetchData.error.status)} */}
+        {fetchData.error.message === "Request failed with status code 404" ? (
+          <div className="flex flex-col items-center gap-5">
+            <div className="w-full px-2 h-[300px] md:h-fit">
+              <img
+                src={errorImg}
+                className="w-full md:w-[500px] aspect-square object-fill"
+              />
+            </div>
+            <p className="font-semibold text-xl">Incorrect route </p>
+            <button
+              className="font-semibold p-2 border"
+              onClick={() => navigation("/")}
+            >
+              Go Back
+            </button>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center gap-5">
+            <div className="w-full px-2 h-[300px]">
+              <img
+                src={networkErrImg}
+                className="w-full md:w-[500px] aspect-square object-fill"
+              />
+            </div>
+            <p className="font-semibold text-xl">Network Error</p>
+            <button
+              className="font-semibold p-2 border"
+              onClick={() => navigation("/")}
+            >
+              Go Back
+            </button>
+          </div>
+        )}
+      </div>
     );
   }
 
