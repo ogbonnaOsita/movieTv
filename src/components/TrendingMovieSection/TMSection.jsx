@@ -54,6 +54,8 @@ const TMSection = () => {
       return undefined;
     }
 
+    setGenreDisplayname("");
+
     // removeTagFromLocalStorage();
 
     if (location.hash === "" || location.hash === "#trending-now") {
