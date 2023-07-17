@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import MovieGenreSlide from "./MovieGenreSlide";
 import ScrollToTopBtn from "../ScrollToTopBtn";
 import TagSelectDropDown from "./TagSelectDropDown";
+import SelectGenre from "./SelectGenre";
 
 const DetailedList = () => {
   const handleClicked = (path) => {
@@ -41,7 +42,8 @@ const DetailedList = () => {
             Movies
           </h1>
           <div className="lg:hidden">
-            <TagSelectDropDown />
+            {/* <TagSelectDropDown />  replaced with SelectDropDown */}
+            <SelectGenre />
           </div>
         </div>
         <div className="space-y-10">

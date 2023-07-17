@@ -22,7 +22,7 @@ const SelectDemo = () => {
     <Select.Root onValueChange={(value) => handleClicked(value)}>
       <Select.Trigger
         className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px] font-semibold bg-white text-black shadow-[0,2px,10px]y shadow-black/10 hover:bg-mauve3 focus:shadow-[0_0_0_2px]y focus:shadow-black data-[placeholder]:text-black outline-none"
-        aria-label="Food"
+        aria-label="movies-genres"
       >
         <Select.Value placeholder="Select A Genre" />
         <Select.Icon className="text-black">
@@ -31,10 +31,10 @@ const SelectDemo = () => {
       </Select.Trigger>
       <Select.Portal>
         <Select.Content
-          position="popper"
-          sideOffset={-150}
-          side="top"
-          draggable
+          // position="popper"
+          // sideOffset={-150}
+          // side="top"
+          // draggable
           className="overflow-hidden bg-white rounded-md shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]"
         >
           <Select.ScrollUpButton className="flex items-center justify-center h-[25px] bg-white text-violet11 cursor-default">

@@ -38,8 +38,9 @@ body {
   line-height: 1.2;
   color: #fff;
   letter-spacing: 5px;
-  z-index: 1;
+  /* z-index: 1; */
   animation: shift 1s ease-in-out infinite alternate;
+  /* background-image: url("./assets/introbg.jpg"); */
 }
 
 .glitch:before,

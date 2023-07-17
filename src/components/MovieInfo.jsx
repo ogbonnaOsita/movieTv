@@ -97,7 +97,7 @@ const MovieInfo = () => {
             <div className="w-full px-2 h-[300px] md:h-fit">
               <img
                 src={errorImg}
-                className="w-full md:w-[500px] aspect-square object-fill"
+                className="w-full md:w-[500px] aspect-square object-cover"
               />
             </div>
             <p className="font-semibold text-xl">Incorrect route </p>

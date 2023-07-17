@@ -12,6 +12,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useMediaQuery } from "../../hooks/MediaQuery";
 import { v4 as uuidv4 } from "uuid";
+import { motion } from "framer-motion";
 
 const HeroSection = () => {
   const images = [slide1, slide2, slide3];

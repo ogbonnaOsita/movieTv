@@ -9,8 +9,9 @@ import Home from "./pages/Home";
 import Movies from "./pages/Movies";
 import TvSeries from "./pages/TvSeries";
 import SearchPage from "./pages/SearchPage";
-import MovieInfo from "./components/MovieInfo";
+// import MovieInfo from "./components/MovieInfo";
 import ErrorComponent from "./components/ErrorComponent";
+import MoviesDetails from "./pages/MoviesDetails";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,7 +20,7 @@ const router = createBrowserRouter(
       <Route path="movies" element={<Movies />} />
       <Route path="series" element={<TvSeries />} />
       <Route path="search" element={<SearchPage />} />
-      <Route path="/:id/:filmtype/:title" element={<MovieInfo />} />
+      <Route path="/:id/:filmtype/:title" element={<MoviesDetails />} />
     </Route>
   )
 );

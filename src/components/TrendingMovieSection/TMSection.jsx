@@ -16,7 +16,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const TMSection = () => {
+const TMSection = ({ handleOnLoad }) => {
   const [hashname, setHashname] = useState(`#${meunLinks[0].path}`);
 
   const [genreDisplayname, setGenreDisplayname] = useState(""); // used to display the genre that is been displayed after selecting the tags.The jsx is to be written after the TagContainer.
@@ -38,8 +38,8 @@ const TMSection = () => {
             "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3NjY0YzkyYmJkNTllMjQ0ODA4NTFlMjg5MGVjYzcwNCIsInN1YiI6IjY0YTExYmFlZDUxOTFmMDBlMjY0MjhkMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9M9zvrR5_1b9jomPkdNdCRe3ePbXML8BOiVOgzE_Uxw",
         },
       }),
-    refetchIntervalInBackground: true,
-    refetchInterval: 3000,
+    // refetchIntervalInBackground: true,
+    // refetchInterval: 3000,
     // retryDelay: 5000,
     retry: false,
   });
@@ -103,6 +103,12 @@ const TMSection = () => {
     setUrl(`https://api.themoviedb.org/3/genre/${queryFilterString}/movies`);
   };
 
+  useEffect(() => {
+    if (fetchData.data) {
+      handleOnLoad(false);
+    }
+  }, [fetchData.data]);
+
   // const children = useMemo(
   //   () => (
   //     <TagContainer
@@ -128,7 +134,8 @@ const TMSection = () => {
   }
 
   if (fetchData.isError) {
-    return <h1>Error Loading results</h1>;
+    // return <h1>Error Loading results</h1>;
+    throw new Error(fetchData.error);
   }
 
   // console.log(fetchData.data.data.results);

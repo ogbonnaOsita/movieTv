@@ -7,9 +7,7 @@ const RootLayout = () => {
       <main>
         <Outlet />
       </main>
-      <div className="mt-auto">
-        <Footer />
-      </div>
+      <div className="mt-auto">{/* <Footer /> */}</div>
     </div>
   );
 };
