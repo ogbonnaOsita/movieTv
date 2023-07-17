@@ -7,13 +7,14 @@ const SelectGenre = () => {
   const [showGenre, setShowGenre] = useState(false);
   const handleOpenModal = () => {
     setShowGenre(true);
-    document.body.style.overflow = "hidden";
+    // document.body.style.overflow = "hidden";
   };
 
   const handleClicked = (path) => {
-    document.body.style.overflow = "unset";
+    // document.body.style.overflow = "auto";
     const element = document.getElementById(path);
     if (element) {
+      //   alert("Clicked");
       //  Will scroll smoothly to the top of the next section
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -32,7 +33,7 @@ const SelectGenre = () => {
           <span
             className="text-2xl text-[#f2f2f2] "
             onClick={(e) => {
-              e.stopPropagation();
+              //   e.stopPropagation();
               setShowGenre(false);
             }}
           >
@@ -41,8 +42,8 @@ const SelectGenre = () => {
           {tagNames.map((tagname) => (
             <span
               onClick={() => {
-                handleClicked(tagname.name);
                 setShowGenre(false);
+                handleClicked(tagname.name);
               }}
               key={uuidv4()}
               className="font-semibold text-xl text-[#f2f2f2] capitalize"
