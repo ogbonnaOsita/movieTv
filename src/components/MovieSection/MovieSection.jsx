@@ -12,9 +12,14 @@ import MovieGrid from "./MovieGrid";
 import { tagNames } from "./SectionData";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+// import { motion, useScroll } from "framer-motion";
+// import { useInView } from "react-intersection-observer";
+
 // import SelectDemo from "../DetailedList/TagSelectDropDown";
 
 const MovieSection = (props) => {
+  // const { ref, inView } = useInView();
+
   const { meunLinks } = props;
   // STATE THAT IS USED TO CONTROL THE PAGE AND PAGINATION
   const [page, setPage] = useState(1);
@@ -236,8 +241,13 @@ const MovieSection = (props) => {
         {/* <SelectDemo /> */}
       </header>
       <MovieGrid>
-        {gridData.map((gridDatum) => (
-          <MovieCard key={uuidv4()} data={gridDatum} section={sections} />
+        {gridData.map((gridDatum, i) => (
+          <MovieCard
+            key={uuidv4()}
+            data={gridDatum}
+            section={sections}
+            index={i}
+          />
         ))}
       </MovieGrid>
       {sections !== "original-Series" && (

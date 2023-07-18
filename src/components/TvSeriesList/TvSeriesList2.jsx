@@ -226,8 +226,13 @@ const TvSeriesList2 = () => {
       {/* MOVIE GRID */}
       <div>
         <MovieGrid>
-          {pageData.map((gridDatum) => (
-            <MovieCard key={uuidv4()} data={gridDatum} section={"tvserie"} />
+          {pageData.map((gridDatum, i) => (
+            <MovieCard
+              key={uuidv4()}
+              data={gridDatum}
+              section={"tvserie"}
+              index={i}
+            />
           ))}
         </MovieGrid>
       </div>

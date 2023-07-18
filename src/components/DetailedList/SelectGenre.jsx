@@ -20,13 +20,15 @@ const SelectGenre = () => {
     }
   };
 
+  const [btnText, setBtnText] = useState("Select Genre");
+
   return (
     <>
       <button
         className="border bg-[#f2f2f2] text-black font-semibold text-base shadow-xl px-2 py-1"
         onClick={handleOpenModal}
       >
-        Select Genre
+        {btnText}
       </button>
       {showGenre && (
         <div className="fixed z-[1000] pt-[300px]  pb-10 top-0 left-0 h-[100dvh] overflow-auto w-screen bg-[rgba(0,0,0,0.8)] flex flex-col justify-center items-center gap-4">
@@ -44,6 +46,7 @@ const SelectGenre = () => {
               onClick={() => {
                 setShowGenre(false);
                 handleClicked(tagname.name);
+                setBtnText(tagname.name);
               }}
               key={uuidv4()}
               className="font-semibold text-xl text-[#f2f2f2] capitalize"
