@@ -6,29 +6,33 @@ import { AiOutlineSearch } from "react-icons/ai";
 import MovieGrid from "../MovieSection/MovieGrid";
 import MovieCard from "../MovieSection/MovieCard";
 import { v4 as uuidv4 } from "uuid";
+import useDebounce from "../../hooks/useDebounce";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
+
+  const debouncedQueryValue = useDebounce(searchQuery, 1000);
+
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
   };
   const [url, setUrl] = useState(
-    `https://api.themoviedb.org/3/search/multi?query=${searchQuery}&include_adult=false&language=en-US&page=1`
+    `https://api.themoviedb.org/3/search/multi?query=${debouncedQueryValue}&include_adult=false&language=en-US&page=1`
   );
 
   // Any time the searchQuery state change then the useeffect runs and set the url using the updated searchQuery state.
   useEffect(() => {
     // alert(process.env.VITE_REACT_APP_BEARER);
     setUrl(
-      `https://api.themoviedb.org/3/search/multi?query=${searchQuery}&include_adult=false&language=en-US&page=1`
+      `https://api.themoviedb.org/3/search/multi?query=${debouncedQueryValue}&include_adult=false&language=en-US&page=1`
     );
-  }, [searchQuery]);
+  }, [debouncedQueryValue]);
 
   //DATA FETCHING
   const fetchData = useQuery({
     queryKey: [url],
     queryFn: () =>
-      axios.get(url, {
+      axios.get(debouncedQueryValue ? url : null, {
         headers: {
           "Content-Type": "application/json",
           Authorization:
@@ -62,13 +66,13 @@ const Search = () => {
       </div>
 
       {/* grid display */}
-      {fetchData.isLoading && searchQuery !== "" && (
+      {fetchData.isLoading && debouncedQueryValue !== "" && (
         <div className="w-full h-[400px] flex justify-center items-center">
           <div className="loader_fetch"></div>
         </div>
       )}
       {fetchData.isError && <h1>Error Loading results</h1>}
-      {fetchData.data && searchQuery !== "" && (
+      {fetchData.data && debouncedQueryValue !== "" && (
         <div>
           <MovieGrid>
             {fetchData.data.data.results.map((gridDatum) => (
