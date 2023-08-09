@@ -45,7 +45,7 @@ const Home = () => {
             className="fixed z-[10000] top-0 left-0 h-screen w-screen bg-blacky"
           >
             <motion.span
-              className="text-xl order-1 font-bold text-red-800 absolute "
+              className="text-xl order-1 font-bold text-red-800 absolute bottom-[50vh] "
               // initial={{
               //   // scale: 0.8,
               //   bottom: 0,
@@ -59,13 +59,13 @@ const Home = () => {
               cx={50}
               animate={{
                 // bottom: 0,
-                bottom: ["0vh", "50vh", "60vh"],
+                bottom: ["50vh", "50vh", "60vh"],
                 left: ["50%", "50%", "50%"],
                 // scale: 1.5,
                 fontSize: ["0.8rem", "2rem", "3rem"],
-                opacity: [0.2, 1, 0.9],
+                opacity: [0, 1, 0.9],
                 translateX: ["-50%", "-50%", "-50%"],
-                translateY: ["-50%", "-50%", "-50%"],
+                // translateY: ["-50%", "-50%", "-50%"],
               }}
               transition={{
                 duration: 2,

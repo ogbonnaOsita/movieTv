@@ -43,13 +43,13 @@ const Navbar = () => {
             </label>
           </div>
         </div>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.2, delay: 3 }}
+        <div
+          // initial={{ opacity: 0 }}
+          // animate={{ opacity: 1 }}
+          // transition={{ duration: 0.2, delay: 3 }}
           className={`menuLinks ${
             toggleMenu
-              ? " absolute bg-white text-slate-900 top-[100%]  w-full flex flex-col py-4  "
+              ? " absolute bg-white text-slate-900 top-[100%]  w-full flex flex-col py-4"
               : " hidden md:flex md:gap-10 md:text-white"
           }  `}
         >
@@ -89,7 +89,7 @@ const Navbar = () => {
             <RiAccountPinBoxLine />
             Account
           </Link> */}
-        </motion.div>
+        </div>
       </nav>
     </div>
   );

@@ -48,6 +48,11 @@ const MovieGenreSlide = ({ genreId, tagname }) => {
       }),
   });
 
+  useEffect(() => {
+    document.body.style.height = "100%";
+    document.body.style.overflow = "hidden";
+  }, []);
+
   if (fetchData.isLoading) {
     return (
       <div className="w-full h-[400px] flex justify-center items-center">
@@ -59,6 +64,9 @@ const MovieGenreSlide = ({ genreId, tagname }) => {
   if (fetchData.isError) {
     return <h1>Error Loading results</h1>;
   }
+
+  document.body.style.height = "auto";
+  document.body.style.overflowY = "scroll";
 
   const slideData = fetchData.data.data.results;
 
