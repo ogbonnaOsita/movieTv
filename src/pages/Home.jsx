@@ -45,7 +45,7 @@ const Home = () => {
             className="fixed z-[10000] top-0 left-0 h-screen w-screen bg-blacky"
           >
             <motion.span
-              className="text-xl order-1 font-bold text-red-800 absolute bottom-[50vh] "
+              className="text-xl order-1 font-bold text-red-800 absolute opacity-0"
               // initial={{
               //   // scale: 0.8,
               //   bottom: 0,
