@@ -145,7 +145,7 @@ const MovieInfo = () => {
   } = fetchData.data.data;
 
   //   videoData.isLoading == false &&
-  // console.log(videoData.data.data.results[0].key);
+  // console.log(videoData.data.data.results);
 
   return (
     // <div className="text-white font-semibold text-2xl">Movie don land</div>
@@ -159,7 +159,7 @@ const MovieInfo = () => {
         <div className=" w-[300px]t aspect-autoy lg:w-[600px] lg:h-[700px]">
           <img
             src={`http://image.tmdb.org/t/p/w500/${poster_path}`}
-            className="h-full w-full object-fit"
+            className="h-full w-full object-cover"
             alt=""
           />
         </div>

@@ -32,7 +32,7 @@ const Search = () => {
   const fetchData = useQuery({
     queryKey: [url],
     queryFn: () =>
-      axios.get(debouncedQueryValue ? url : null, {
+      axios.get(debouncedQueryValue ? url : "", {
         headers: {
           "Content-Type": "application/json",
           Authorization:
@@ -43,7 +43,7 @@ const Search = () => {
       }),
   });
 
-  // console.log(fetchData.data);
+  // console.log(fetchData.data.data);
   return (
     <div className="space-y-5 py-10 px-5 md:px-20">
       {/* Header */}

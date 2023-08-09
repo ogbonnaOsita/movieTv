@@ -46,34 +46,19 @@ const Home = () => {
           >
             <motion.span
               className="text-xl order-1 font-bold text-red-800 absolute opacity-0"
-              // initial={{
-              //   // scale: 0.8,
-              //   bottom: 0,
-              //   fontSize: "0.7rem",
-              //   // top: "100vh",
-              //   opacity: 0.1,
-              //   left: "50%",
-              //   translateX: "-50%",
-              //   // translateY: "0%",
-              // }}
               cx={50}
               animate={{
-                // bottom: 0,
                 bottom: ["50vh", "50vh", "60vh"],
                 left: ["50%", "50%", "50%"],
-                // scale: 1.5,
                 fontSize: ["0.8rem", "2rem", "3rem"],
                 opacity: [0, 1, 0.9],
                 translateX: ["-50%", "-50%", "-50%"],
-                // translateY: ["-50%", "-50%", "-50%"],
               }}
               transition={{
                 duration: 2,
                 delay: 0.3,
                 type: "tween",
                 times: [0, 0.8, 1],
-                // easing: "easeOutExpo",
-                // stiffness: 200,
               }}
             >
               RayPowerTv

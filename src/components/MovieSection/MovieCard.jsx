@@ -39,16 +39,21 @@ const MovieCard = (props) => {
       initial={{ opacity: 0, translateX: -50, translateY: -50 }}
       animate={{ opacity: 1, translateX: 0, translateY: 0 }}
       transition={{ duration: 0.3, delay: index * 0.2 }}
+      className={`${backdrop_path || poster_path ? 'cursor-pointer' : "pointer-events-none"}`}
     >
       <Link
-        className="cursor-pointer"
         to={`/${id}/${filmType}/${original_title || original_name}`}
+        className="cursor-pointer"
       >
         <div className="img-container h-[200px] w-[200px]y w-full rounded-md ">
           <img
-            src={`http://image.tmdb.org/t/p/w500/${
-              poster_path || backdrop_path
-            }`}
+            src={
+              backdrop_path || poster_path
+                ? `http://image.tmdb.org/t/p/w500/${
+                    poster_path || backdrop_path
+                  }`
+                : `https://placehold.co/400x300/000000/8C8C8C/png?text=No+Image`
+            }
             alt=""
             className="h-full w-full object-cover rounded-md"
           />
