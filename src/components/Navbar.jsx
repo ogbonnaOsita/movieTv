@@ -5,9 +5,14 @@ import { AiOutlineSearch } from "react-icons/ai";
 // import { RiAccountPinBoxLine } from "react-icons/ri";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
+
+  const {pathname} = useLocation();
+
+  console.log(pathname);
 
   const handleMenu = () => {
     setToggleMenu(!toggleMenu);
@@ -55,19 +60,19 @@ const Navbar = () => {
         >
           <Link
             to={"/"}
-            className={`text-sm font-medium capitalize relative lg:hover:bg-transparent ${hoverEffect} `}
+            className={`text-sm font-medium ${pathname == "/" && "text-red-500" }  capitalize relative lg:hover:bg-transparent ${hoverEffect} `}
           >
             Home
           </Link>
           <Link
             to={"/movies"}
-            className={`text-sm font-medium capitalize relative lg:hover:bg-transparent ${hoverEffect} `}
+            className={`text-sm ${pathname == "/movies" && "text-red-500" } font-medium capitalize relative lg:hover:bg-transparent ${hoverEffect} `}
           >
             Movies
           </Link>
           <Link
             to={"/series"}
-            className={`text-sm font-medium capitalize relative lg:hover:bg-transparent ${hoverEffect} `}
+            className={`text-sm ${pathname == "/series" && "text-red-500"} font-medium capitalize relative lg:hover:bg-transparent ${hoverEffect} `}
           >
             Series
           </Link>

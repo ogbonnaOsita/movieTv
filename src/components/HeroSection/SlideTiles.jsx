@@ -32,6 +32,8 @@ const SlideTiles = (props) => {
     id,
     poster_path,
   } = data;
+
+  console.log(typeof vote_average);
   // url(http://image.tmdb.org/t/p/w500/${backdrop_path})
   // https://api.themoviedb.org/3/movie/603692?language=en-US
 
@@ -85,7 +87,7 @@ const SlideTiles = (props) => {
             Duration : 1hr 30mins
           </p>
           <p className="rating font-medium text-sm text-gray-400">
-            <span className="text-[#efefef] ">{vote_average}</span>{" "}
+            <span className="text-[#efefef] ">{vote_average.toFixed(1)}</span>{" "}
             {movieData.data.genres[0].name + " "} |{" "}
             {movieData.data.genres[1].name}
           </p>

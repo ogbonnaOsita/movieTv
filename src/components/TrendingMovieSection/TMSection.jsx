@@ -20,6 +20,8 @@ import axios from "axios";
 const TMSection = ({ handleOnLoad }) => {
   const [hashname, setHashname] = useState(`#${meunLinks[0].path}`);
 
+  const [updatedUrl, setUpdatedUrl] = useState("trending-now");
+
   const [genreDisplayname, setGenreDisplayname] = useState(""); // used to display the genre that is been displayed after selecting the tags.The jsx is to be written after the TagContainer.
 
   const [theUrl, setUrl] = useState(
@@ -45,38 +47,56 @@ const TMSection = ({ handleOnLoad }) => {
     retry: false,
   });
 
+  
+
   const removeTagFromLocalStorage = () => {
     // alert(55566);
     localStorage.removeItem("tags");
   };
 
-  useEffect(() => {
-    if (
-      location.hash === "#movies" ||
-      location.hash === "#series" ||
-      location.hash === "#original-Series"
-    ) {
-      return undefined;
-    }
+  // useEffect(() => {
+  //   if (
+  //     location.hash === "#movies" ||
+  //     location.hash === "#series" ||
+  //     location.hash === "#original-Series"
+  //   ) {
+  //     return undefined;
+  //   }
 
-    setGenreDisplayname("");
+  //   setGenreDisplayname("");
 
-    // removeTagFromLocalStorage();
+  //   // removeTagFromLocalStorage();
 
-    if (location.hash === "" || location.hash === "#trending-now") {
-      setUrl("https://api.themoviedb.org/3/trending/movie/week?language=en-US");
-      return removeTagFromLocalStorage();
-    } else if (location.hash === "#popular") {
-      setUrl("https://api.themoviedb.org/3/movie/popular");
-      return removeTagFromLocalStorage();
-    } else if (location.hash === "#topRated") {
-      setUrl("https://api.themoviedb.org/3/movie/top_rated");
-      return removeTagFromLocalStorage();
-    } else if (location.hash === "#upcoming") {
-      setUrl("https://api.themoviedb.org/3/movie/upcoming");
-      return removeTagFromLocalStorage();
-    }
-  }, [location.hash]);
+  //   if (location.hash === "" || location.hash === "#trending-now") {
+  //     setUrl("https://api.themoviedb.org/3/trending/movie/week?language=en-US");
+  //     return removeTagFromLocalStorage();
+  //   } else if (location.hash === "#popular") {
+  //     setUrl("https://api.themoviedb.org/3/movie/popular");
+  //     return removeTagFromLocalStorage();
+  //   } else if (location.hash === "#topRated") {
+  //     setUrl("https://api.themoviedb.org/3/movie/top_rated");
+  //     return removeTagFromLocalStorage();
+  //   } else if (location.hash === "#upcoming") {
+  //     setUrl("https://api.themoviedb.org/3/movie/upcoming");
+  //     return removeTagFromLocalStorage();
+  //   }
+  // }, [location.hash]);
+
+  useEffect(()=>{   
+        if ( updatedUrl === "trending-now" ) {
+          setUrl("https://api.themoviedb.org/3/trending/movie/week?language=en-US");
+          return removeTagFromLocalStorage();
+        } else if (updatedUrl === "popular") {
+          setUrl("https://api.themoviedb.org/3/movie/popular");
+          return removeTagFromLocalStorage();
+        } else if (updatedUrl === "topRated") {
+          setUrl("https://api.themoviedb.org/3/movie/top_rated");
+          return removeTagFromLocalStorage();
+        } else if (updatedUrl === "upcoming") {
+          setUrl("https://api.themoviedb.org/3/movie/upcoming");
+          return removeTagFromLocalStorage();
+        }
+  },[updatedUrl])
 
   useEffect(() => {
     if (
@@ -105,7 +125,7 @@ const TMSection = ({ handleOnLoad }) => {
   };
 
   useEffect(() => {
-    if (fetchData.data) {
+    if (theUrl == "https://api.themoviedb.org/3/trending/movie/week?language=en-US" && fetchData.data ) {
       handleOnLoad(false);
     }
   }, [fetchData.data]);
@@ -147,7 +167,7 @@ const TMSection = ({ handleOnLoad }) => {
     <section>
       <header className="px-4 md:px-[10%] space-y-6">
         <HeaderLinks>
-          {meunLinks.map((menu) => {
+          {/* {meunLinks.map((menu) => {
             return (
               <NavLink
                 key={uuidv4()}
@@ -161,6 +181,23 @@ const TMSection = ({ handleOnLoad }) => {
                 {menu.icon}
                 {menu.menu}
               </NavLink>
+            );
+          })} */}
+           {meunLinks.map((menu) => {
+            return (
+              <button
+                key={uuidv4()}
+                // to={`/#${menu.path}`}
+                onClick={()=> setUpdatedUrl(menu.path)}
+                className={` ${
+                  updatedUrl === menu.path
+                    ? "text-sm md:text-[18px] text-[#efefefee]"
+                    : "text-xs md:text-base text-gray-700"
+                }  text-[#efefefee] transition-all font-medium capitalize relative flex items-center gap-[2px] md:gap-2  ${hoverEffect2}`}
+              >
+                {menu.icon}
+                {menu.menu}
+              </button>
             );
           })}
         </HeaderLinks>
